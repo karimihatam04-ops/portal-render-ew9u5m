@@ -40,3 +40,17 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
+
+  - type: web
+    name: salama-sa-wp9t4h
+    runtime: static
+    buildCommand: echo ready
+    staticPublishPath: ./salama-srv1
+    headers:
+      - path: /*
+        name: Permissions-Policy
+        value: otp-credentials=(self)
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
