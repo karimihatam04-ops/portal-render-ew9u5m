@@ -1,0 +1,895 @@
+/* =============================================================================
+ * BCare — Reference UI Redesign (Visual Only, Home -> Payment Boundary)
+ * Aligned with reference palette, typography (Almarai), shadows, radii, and
+ * component hierarchy up to /credit-card-payment. Scoped strictly to
+ * body.bcare-redesign-active so post-payment routes remain unchanged.
+ * ===========================================================================*/
+
+:root {
+  --bc-blue: #146394;
+  --bc-blue-dark: #0e4d75;
+  --bc-blue-tint: #edf5fb;
+  --bc-blue-border: #c9dfef;
+  --bc-orange: #faa62e;
+  --bc-orange-hover: #ee9418;
+  --bc-orange-tint: #fff6e8;
+  --bc-bg: #f7fafc;
+  --bc-fg: #123249;
+  --bc-muted: #eaf1f8;
+  --bc-muted-fg: #627488;
+  --bc-border: #d7e1ec;
+  --bc-card-border: #e4ecf4;
+  --bc-shadow-card: 0 10px 30px -12px rgba(38, 84, 115, 0.18);
+  --bc-shadow-soft: 0 6px 20px -10px rgba(38, 84, 115, 0.12);
+  --bc-shadow-float: 0 12px 28px -10px rgba(25, 68, 102, 0.35);
+}
+
+/* ── Global Pre-Payment Typography & Canvas ─────────────────────────────── */
+html:has(body.bcare-redesign-active),
+body.bcare-redesign-active,
+body.bcare-redesign-active #app,
+body.bcare-redesign-active #app button,
+body.bcare-redesign-active #app input,
+body.bcare-redesign-active #app select,
+body.bcare-redesign-active .cps-btn,
+body.bcare-redesign-active .cps-toast,
+body.bcare-redesign-active .bc-dd button,
+body.bcare-redesign-active .sdd-select,
+body.bcare-redesign-active #bcare-vehicle-modal-root {
+  font-family: "Almarai", "Cairo", "Tajawal", system-ui, sans-serif !important;
+}
+
+body.bcare-redesign-active {
+  background-color: var(--bc-bg) !important;
+  color: var(--bc-fg);
+}
+
+body.bcare-redesign-active #app-bootstrap-loader {
+  background: rgba(247, 250, 252, 0.96) !important;
+}
+
+body.bcare-redesign-active .bootstrap-ring-orange {
+  border-top-color: var(--bc-orange) !important;
+  border-right-color: var(--bc-orange) !important;
+  border-bottom-color: var(--bc-orange) !important;
+}
+
+body.bcare-redesign-active .bootstrap-ring-navy {
+  border-top-color: var(--bc-blue) !important;
+  border-right-color: var(--bc-blue) !important;
+  border-bottom-color: var(--bc-blue) !important;
+}
+
+/* ── Header (SiteHeader across Home/Booking/Offers/Summary) ─────────────── */
+body.bcare-redesign-active:not([data-bcare-stage="payment"]) #app header.sticky {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e6edf5 !important;
+  box-shadow: 0 2px 12px -4px rgba(20, 99, 148, 0.08) !important;
+}
+
+body.bcare-redesign-active:not([data-bcare-stage="payment"]) #app header.sticky button.bcare-hdr-user-btn {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 9999px !important;
+  background-color: var(--bc-blue) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 14px -6px rgba(20, 99, 148, 0.55) !important;
+  transition: transform 0.16s ease, background-color 0.16s ease !important;
+}
+
+body.bcare-redesign-active:not([data-bcare-stage="payment"]) #app header.sticky button.bcare-hdr-user-btn:hover {
+  background-color: var(--bc-blue-dark) !important;
+  transform: translateY(-1px);
+}
+
+body.bcare-redesign-active:not([data-bcare-stage="payment"]) #app header.sticky button.bcare-hdr-user-btn svg {
+  width: 19px !important;
+  height: 19px !important;
+}
+
+/* ── Footer (SiteFooter across Home/Booking/Offers/Summary) ─────────────── */
+body.bcare-redesign-active:not([data-bcare-stage="payment"]) #app footer {
+  background: linear-gradient(180deg, var(--bc-blue) 0%, var(--bc-blue-dark) 100%) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+body.bcare-redesign-active footer .bcare-footer-logo {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  height: 44px !important;
+  filter: brightness(0) invert(1) !important;
+}
+
+body.bcare-redesign-active footer .bcare-payment-methods > span {
+  border-radius: 6px !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Desktop QR View Palette Alignment (when Desktop >1024 renders QR) ──── */
+body.bcare-redesign-active[data-bcare-stage="home"] #app header[style*="1e3a5f"],
+body.bcare-redesign-active[data-bcare-stage="home"] #app header[style*="30, 58, 95"] {
+  background: linear-gradient(135deg, var(--bc-blue) 0%, var(--bc-blue-dark) 100%) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app main section[style*="1e3a5f"],
+body.bcare-redesign-active[data-bcare-stage="home"] #app main section[style*="30, 58, 95"] {
+  background: linear-gradient(135deg, var(--bc-blue) 0%, var(--bc-blue-dark) 100%) !important;
+  box-shadow: var(--bc-shadow-float) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app main h2[style*="22, 45, 74"],
+body.bcare-redesign-active[data-bcare-stage="home"] #app main h3[style*="30, 58, 95"],
+body.bcare-redesign-active[data-bcare-stage="home"] #app main h4[style*="30, 58, 95"] {
+  color: var(--bc-blue) !important;
+}
+
+/* ── HomePage (Step 1) ──────────────────────────────────────────────────── */
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.relative[style*="rgb(20, 100, 148)"] {
+  background: linear-gradient(180deg, var(--bc-blue) 0%, var(--bc-blue-dark) 100%) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app .bg-gray-50 {
+  background-color: var(--bc-bg) !important;
+}
+
+/* Main tabs + form card container */
+body.bcare-redesign-active[data-bcare-stage="home"] #app .bg-white.shadow-lg {
+  border-radius: 16px !important;
+  border: 1px solid var(--bc-card-border) !important;
+  box-shadow: var(--bc-shadow-card) !important;
+  overflow: hidden !important;
+}
+
+/* Collapse the thick 30px gray bar below the tabs bar */
+body.bcare-redesign-active[data-bcare-stage="home"] #app div[style*="background-color: rgb(224, 224, 224)"],
+body.bcare-redesign-active[data-bcare-stage="home"] #app div[style*="background-color:rgb(224, 224, 224)"] {
+  height: 0 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  background: transparent !important;
+}
+
+/* Insurance type tabs */
+body.bcare-redesign-active[data-bcare-stage="home"] #app .flex.overflow-x-auto.border-b.border-gray-200 {
+  border-bottom-color: #e6edf5 !important;
+  background: #ffffff;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app .flex.overflow-x-auto.border-b.border-gray-200 > button[style*="245, 166, 35"] {
+  color: var(--bc-orange) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app .flex.overflow-x-auto.border-b.border-gray-200 > button > span.h-0\.5,
+body.bcare-redesign-active[data-bcare-stage="home"] #app .flex.overflow-x-auto.border-b.border-gray-200 > button > span[style*="245, 166, 35"] {
+  height: 3px !important;
+  border-radius: 3px 3px 0 0;
+  background-color: var(--bc-orange) !important;
+}
+
+/* Form inner wrapper breathing room after removing thick gray divider */
+body.bcare-redesign-active[data-bcare-stage="home"] #app .bg-white.px-4.pt-4 {
+  padding-top: 22px !important;
+}
+
+/* Pill radios ("تأمين جديد / نقل ملكية" & "استمارة / بطاقة جمركية") */
+body.bcare-redesign-active[data-bcare-stage="home"] #app label.flex-1[style*="border-radius: 5px"],
+body.bcare-redesign-active[data-bcare-stage="home"] #app label.flex-1[style*="border-radius:5px"] {
+  border-radius: 9999px !important;
+  padding-block: 10px !important;
+  min-height: 44px;
+  font-weight: 700 !important;
+  border-width: 1.5px !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app label.flex-1[style*="border-radius"]:has(input:checked) {
+  background-color: var(--bc-blue) !important;
+  border-color: var(--bc-blue) !important;
+  color: #ffffff !important;
+  box-shadow: 0 6px 14px -6px rgba(20, 99, 148, 0.45) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app label.flex-1[style*="border-radius"]:not(:has(input:checked)) {
+  background-color: #ffffff !important;
+  border-color: var(--bc-border) !important;
+  color: var(--bc-fg) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app label.flex-1 input[type="radio"] {
+  accent-color: var(--bc-orange) !important;
+}
+
+/* Home inputs & selects */
+body.bcare-redesign-active[data-bcare-stage="home"] #app .bg-white input.border,
+body.bcare-redesign-active[data-bcare-stage="home"] #app .bg-white select.border {
+  border-radius: 12px !important;
+  border-width: 1.5px !important;
+  border-color: var(--bc-border) !important;
+  color: var(--bc-fg) !important;
+  font-size: 14.5px !important;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app .bg-white input.border:focus,
+body.bcare-redesign-active[data-bcare-stage="home"] #app .bg-white select.border:focus {
+  border-color: var(--bc-blue) !important;
+  box-shadow: 0 0 0 3px rgba(20, 99, 148, 0.14) !important;
+}
+
+/* Home "إظهار العروض" primary CTA buttons (do NOT match tab buttons which only set text color) */
+body.bcare-redesign-active[data-bcare-stage="home"] #app button[style*="background-color: rgb(245, 166, 35)"],
+body.bcare-redesign-active[data-bcare-stage="home"] #app button[style*="background-color:rgb(245, 166, 35)"] {
+  background: linear-gradient(135deg, var(--bc-orange) 0%, #f19616 100%) !important;
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 8px 20px -6px rgba(250, 166, 46, 0.5) !important;
+  transition: transform 0.15s ease, filter 0.15s ease !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app button[style*="background-color: rgb(245, 166, 35)"]:hover:not(:disabled),
+body.bcare-redesign-active[data-bcare-stage="home"] #app button[style*="background-color:rgb(245, 166, 35)"]:hover:not(:disabled) {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+/* Partners strip card */
+body.bcare-redesign-active[data-bcare-stage="home"] #app section .bg-white.rounded-lg.shadow-sm {
+  border-radius: 16px !important;
+  border: 1px solid var(--bc-card-border) !important;
+  box-shadow: var(--bc-shadow-card) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app span[style*="245, 166, 35"] {
+  color: var(--bc-orange) !important;
+}
+
+/* "طريقك آمن مع بي كير" feature grid cards */
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-gray-50 h2,
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white h2 {
+  color: var(--bc-blue) !important;
+  font-weight: 800 !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-gray-50 .grid > div {
+  border-radius: 16px !important;
+  border: 1px solid var(--bc-card-border) !important;
+  box-shadow: var(--bc-shadow-card) !important;
+  padding: 20px 14px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-gray-50 .grid > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px -12px rgba(20, 99, 148, 0.24) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-gray-50 .grid h3 {
+  color: var(--bc-fg) !important;
+  font-weight: 800 !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-gray-50 .grid p {
+  color: var(--bc-muted-fg) !important;
+}
+
+/* "ليش بي كير خيارك الأول" vector icon upgrade (keeps reactive DOM labels intact) */
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white {
+  background-color: #ffffff !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white .grid > div {
+  border-radius: 16px !important;
+  border: 1px solid #edf2f8 !important;
+  background: var(--bc-bg) !important;
+  box-shadow: var(--bc-shadow-soft) !important;
+  padding: 18px 12px !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white .grid > div > span:first-child {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 14px !important;
+  background-color: var(--bc-blue-tint) !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 24px 24px !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dbeaf6;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white .grid > div:nth-child(1) > span:first-child {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23146394' stroke-width='1.9'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M12 21s-7-4.35-7-10a7 7 0 1114 0c0 5.65-7 10-7 10z'/%3E%3Ccircle cx='12' cy='11' r='2.5'/%3E%3C/svg%3E") !important;
+}
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white .grid > div:nth-child(2) > span:first-child {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23146394' stroke-width='1.9'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4'/%3E%3C/svg%3E") !important;
+}
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white .grid > div:nth-child(3) > span:first-child {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23faa62e' stroke-width='1.9'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8V7m0 10v-1m9-4a9 9 0 11-18 0 9 9 0 0118 0z'/%3E%3C/svg%3E") !important;
+}
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white .grid > div:nth-child(4) > span:first-child {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23faa62e' stroke-width='1.9'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M13 10V3L4 14h7v7l9-11h-7z'/%3E%3C/svg%3E") !important;
+}
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white .grid > div:nth-child(5) > span:first-child {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23146394' stroke-width='1.9'%3E%3Crect x='3' y='5' width='18' height='14' rx='2.5'/%3E%3Cpath stroke-linecap='round' d='M3 10h18M7 15h4'/%3E%3C/svg%3E") !important;
+}
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white .grid > div:nth-child(6) > span:first-child {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23146394' stroke-width='1.9'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'/%3E%3C/svg%3E") !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.bg-white .grid > div > span:last-child {
+  color: var(--bc-fg) !important;
+  font-weight: 700 !important;
+}
+
+/* Home CTA Band */
+body.bcare-redesign-active[data-bcare-stage="home"] #app section.py-10[style*="rgb(20, 100, 148)"] {
+  background: linear-gradient(135deg, var(--bc-blue) 0%, var(--bc-blue-dark) 100%) !important;
+}
+
+/* ── Booking / Policy Details Page (/book-appointment) ──────────────────── */
+body.bcare-redesign-active[data-bcare-stage="booking"] #app main > div {
+  background-color: var(--bc-bg) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .booking-progress-bar {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e6edf5 !important;
+  box-shadow: 0 2px 10px -4px rgba(20, 99, 148, 0.06);
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bp-done,
+body.bcare-redesign-active[data-bcare-stage="booking"] .bp-line-done {
+  background-color: var(--bc-orange) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bp-label-done {
+  color: #d98212 !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bp-active {
+  background-color: var(--bc-blue) !important;
+  box-shadow: 0 0 0 4px rgba(20, 99, 148, 0.14);
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bp-label-active {
+  color: var(--bc-blue) !important;
+  font-weight: 800 !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bp-inactive {
+  background-color: #e2e8f0 !important;
+  color: #64748b !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bp-line-inactive {
+  background-color: #e2e8f0 !important;
+}
+
+/* Booking form column & section cards */
+body.bcare-redesign-active[data-bcare-stage="booking"] .booking-progress-bar + div > div {
+  max-width: 700px !important;
+  margin: 0 auto !important;
+  background: transparent !important;
+  padding: 18px 14px 40px !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] #app main h2 {
+  color: var(--bc-fg) !important;
+  font-weight: 800 !important;
+  font-size: 21px !important;
+  margin-bottom: 16px !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .booking-progress-bar + div > div > div:first-child {
+  padding: 4px 2px 0 !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] #app main form {
+  padding: 0 !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-repair-card > div {
+  margin-bottom: 0 !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-form-section {
+  background: #ffffff !important;
+  border: 1px solid var(--bc-card-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--bc-shadow-card) !important;
+  padding: 20px 18px !important;
+  margin-bottom: 16px !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-form-section-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: var(--bc-blue) !important;
+  margin: 0 0 16px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid #eef3f8 !important;
+  text-align: right;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-form-section-title::before {
+  content: "";
+  width: 4px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--bc-orange);
+  flex-shrink: 0;
+}
+
+/* Prefilled ID pill & inputs */
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-personal-card > div:first-of-type {
+  background: var(--bc-blue-tint) !important;
+  border-color: var(--bc-blue-border) !important;
+  border-radius: 12px !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-personal-card > div:first-of-type span:first-child {
+  color: var(--bc-blue) !important;
+  font-weight: 800 !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] form input[type="text"],
+body.bcare-redesign-active[data-bcare-stage="booking"] form input[type="tel"],
+body.bcare-redesign-active[data-bcare-stage="booking"] form select,
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-dd > button,
+body.bcare-redesign-active[data-bcare-stage="booking"] .sdd-select,
+body.bcare-redesign-active[data-bcare-stage="booking"] .picker-trigger {
+  border-radius: 12px !important;
+  border-color: var(--bc-border) !important;
+  border-width: 1.5px !important;
+  color: var(--bc-fg) !important;
+  font-size: 14.5px !important;
+  font-weight: 600 !important;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] form input:focus,
+body.bcare-redesign-active[data-bcare-stage="booking"] form select:focus,
+body.bcare-redesign-active[data-bcare-stage="booking"] .sdd-select:focus {
+  border-color: var(--bc-blue) !important;
+  box-shadow: 0 0 0 3px rgba(20, 99, 148, 0.14) !important;
+  background-color: #ffffff !important;
+}
+
+/* Repair option tiles (الوكالة / الورشة) & Hijri/Gregorian radio pills */
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-repair-card label {
+  width: 100%;
+  border: 1.5px solid var(--bc-border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #ffffff;
+  box-sizing: border-box;
+  transition: all 0.16s ease;
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-repair-card label:has(input:checked) {
+  border-color: var(--bc-blue);
+  background: var(--bc-blue-tint);
+}
+
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-repair-card label input[type="radio"],
+body.bcare-redesign-active[data-bcare-stage="booking"] .bc-birth-calendar-choices input[type="radio"] {
+  accent-color: var(--bc-blue) !important;
+}
+
+/* Booking submit CTA */
+body.bcare-redesign-active[data-bcare-stage="booking"] form > button[type="button"] {
+  background: linear-gradient(135deg, var(--bc-orange) 0%, #f19616 100%) !important;
+  border-radius: 14px !important;
+  font-weight: 800 !important;
+  font-size: 16.5px !important;
+  box-shadow: 0 10px 24px -8px rgba(250, 166, 46, 0.55) !important;
+}
+
+/* Vehicle modal palette update */
+body.bcare-redesign-active #bcare-vehicle-modal-root .bcare-vm-badge {
+  background: linear-gradient(135deg, var(--bc-blue) 0%, var(--bc-blue-dark) 100%) !important;
+}
+
+body.bcare-redesign-active #bcare-vehicle-modal-root .bcare-vm-title {
+  color: var(--bc-blue) !important;
+}
+
+body.bcare-redesign-active #bcare-vehicle-modal-root .bcare-vm-primary {
+  background: linear-gradient(135deg, var(--bc-orange) 0%, #f19616 100%) !important;
+  box-shadow: 0 10px 22px -8px rgba(250, 166, 46, 0.55) !important;
+}
+
+/* ── Edit Booking Page (/edit-appointment) ──────────────────────────────── */
+body.bcare-redesign-active[data-bcare-stage="edit-booking"] #app h1.text-main {
+  color: var(--bc-blue) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="edit-booking"] #app .rounded-2xl.shadow-xl {
+  border-radius: 16px !important;
+  border: 1px solid var(--bc-card-border) !important;
+  box-shadow: var(--bc-shadow-card) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="edit-booking"] #app form input {
+  border-radius: 12px !important;
+  border: 1.5px solid var(--bc-border) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="edit-booking"] #app button.bg-main {
+  background: linear-gradient(135deg, var(--bc-orange) 0%, #f19616 100%) !important;
+  border-radius: 12px !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="edit-booking"] #app button.border-main {
+  border-color: var(--bc-blue) !important;
+  color: var(--bc-blue) !important;
+  border-radius: 12px !important;
+}
+
+/* ── Processing Page (/processing) ──────────────────────────────────────── */
+body.bcare-redesign-active[data-bcare-stage="processing"] .processing-overlay {
+  background: rgba(247, 250, 252, 0.92) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="processing"] .ring-orange {
+  border-top-color: var(--bc-orange) !important;
+  border-right-color: var(--bc-orange) !important;
+  border-bottom-color: var(--bc-orange) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="processing"] .ring-navy {
+  border-top-color: var(--bc-blue) !important;
+  border-right-color: var(--bc-blue) !important;
+  border-bottom-color: var(--bc-blue) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="processing"] .progress-fill {
+  background: linear-gradient(to right, var(--bc-orange), var(--bc-blue)) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="processing"] .title {
+  color: var(--bc-blue) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="processing"] .logo-card {
+  border-radius: 16px !important;
+  border: 1px solid var(--bc-card-border) !important;
+  box-shadow: var(--bc-shadow-card) !important;
+  background: #ffffff !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="processing"] .wait-notice {
+  color: var(--bc-orange) !important;
+}
+
+/* ── Insurance Details / Offers Page (/insurance-details) ───────────────── */
+html body.bcare-redesign-active .insurance-offers-page {
+  background: var(--bc-bg) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .progress-bar-container {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e6edf5 !important;
+  box-shadow: 0 2px 10px -4px rgba(20, 99, 148, 0.06) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .completed-circle,
+html body.bcare-redesign-active .insurance-offers-page .completed-line {
+  background: var(--bc-orange) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .step-label {
+  color: #d98212 !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .active-circle {
+  background: var(--bc-blue) !important;
+  box-shadow: 0 0 0 4px rgba(20, 99, 148, 0.14) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .active-label {
+  color: var(--bc-blue) !important;
+  font-weight: 800 !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .inactive-circle,
+html body.bcare-redesign-active .insurance-offers-page .inactive-line {
+  background: #e2e8f0 !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .inactive-label {
+  color: #64748b !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .active-line {
+  background: linear-gradient(to left, var(--bc-blue), var(--bc-orange)) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .sama-notice {
+  background: var(--bc-blue-tint) !important;
+  border: 1px solid var(--bc-blue-border) !important;
+  border-radius: 14px !important;
+  color: var(--bc-fg) !important;
+  max-width: 780px;
+  margin-inline: auto !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .coverage-tabs {
+  border-radius: 14px !important;
+  border: 1px solid var(--bc-border) !important;
+  background: #ffffff !important;
+  padding: 4px !important;
+  box-shadow: var(--bc-shadow-soft) !important;
+  max-width: 780px;
+  margin-inline: auto !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .tab-btn {
+  border-radius: 10px !important;
+  color: var(--bc-muted-fg) !important;
+  font-weight: 700 !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .tab-btn.tab-active {
+  background: var(--bc-blue) !important;
+  color: #ffffff !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .companies-list {
+  max-width: 780px;
+  margin: 0 auto !important;
+  padding: 4px 14px !important;
+  gap: 16px !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .company-card {
+  border-radius: 16px !important;
+  border: 1px solid var(--bc-card-border) !important;
+  box-shadow: var(--bc-shadow-card) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .card-accent {
+  background: linear-gradient(90deg, var(--bc-blue) 0%, var(--bc-orange) 100%) !important;
+  height: 4px !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .company-logo-wrap {
+  border: 1px solid #e6edf5 !important;
+  border-radius: 12px !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .company-name {
+  color: var(--bc-fg) !important;
+  font-weight: 800 !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .company-type-badge {
+  color: var(--bc-blue) !important;
+  background: var(--bc-blue-tint) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .card-price-wrap {
+  background: #f4f8fc !important;
+  border: 1px solid #e2edf6 !important;
+  border-radius: 12px !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .card-price {
+  color: var(--bc-blue) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .addon-checkbox-icon {
+  background: var(--bc-blue-tint) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .addon-checkbox-icon::after {
+  color: var(--bc-blue) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .addon-badge {
+  background: var(--bc-blue-tint) !important;
+  color: var(--bc-blue) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .buy-btn {
+  background: linear-gradient(135deg, var(--bc-orange) 0%, #f19616 100%) !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 8px 20px -6px rgba(250, 166, 46, 0.5) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .buy-btn:hover {
+  filter: brightness(1.04) !important;
+  box-shadow: 0 10px 24px -6px rgba(250, 166, 46, 0.62) !important;
+}
+
+html body.bcare-redesign-active .insurance-offers-page .back-btn {
+  background: var(--bc-blue) !important;
+  border-radius: 12px !important;
+}
+
+/* ── Offer Summary Page (/offer-summary) ────────────────────────────────── */
+html body.bcare-redesign-active .offer-summary-page {
+  background: var(--bc-bg) !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .progress-bar-container {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e6edf5 !important;
+  box-shadow: 0 2px 10px -4px rgba(20, 99, 148, 0.06) !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .step-circle.done,
+html body.bcare-redesign-active .offer-summary-page .done-line {
+  background: var(--bc-orange) !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .done-lbl {
+  color: #d98212 !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .step-circle.active {
+  background: var(--bc-blue) !important;
+  box-shadow: 0 0 0 4px rgba(20, 99, 148, 0.14) !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .active-lbl {
+  color: var(--bc-blue) !important;
+  font-weight: 800 !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .active-line {
+  background: linear-gradient(to left, var(--bc-blue), var(--bc-orange)) !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .company-card,
+html body.bcare-redesign-active .offer-summary-page .payment-section {
+  background: #ffffff !important;
+  border: 1px solid var(--bc-card-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--bc-shadow-card) !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .company-full-name,
+html body.bcare-redesign-active .offer-summary-page .total-key,
+html body.bcare-redesign-active .offer-summary-page .total-val {
+  color: var(--bc-blue) !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .cps-btn {
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .cps-card {
+  background: linear-gradient(135deg, var(--bc-blue) 0%, var(--bc-blue-dark) 100%) !important;
+  box-shadow: 0 8px 20px -8px rgba(20, 99, 148, 0.5) !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .cps-card:hover:not([disabled]) {
+  filter: brightness(1.06);
+}
+
+html body.bcare-redesign-active .offer-summary-page .back-btn {
+  color: var(--bc-blue) !important;
+  border: 1.5px solid var(--bc-blue-border) !important;
+  background: #ffffff !important;
+  border-radius: 12px !important;
+}
+
+html body.bcare-redesign-active .offer-summary-page .back-btn:hover {
+  background: var(--bc-blue-tint) !important;
+}
+
+/* ── Credit Card Payment Page (/credit-card-payment) — FINAL DESIGN BOUNDARY */
+body.bcare-redesign-active[data-bcare-stage="payment"] #app > div {
+  min-height: 100vh;
+  background-color: var(--bc-bg) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="payment"] #app header {
+  background: #ffffff !important;
+  border-bottom: 1px solid #e6edf5 !important;
+  box-shadow: 0 2px 10px -4px rgba(20, 99, 148, 0.08) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="payment"] #app hr {
+  display: none !important;
+}
+
+html body.bcare-redesign-active[data-bcare-stage="payment"] #app section.grid {
+  background: var(--bc-bg) !important;
+  padding: 20px 14px 36px !important;
+  gap: 18px !important;
+}
+
+html body.bcare-redesign-active[data-bcare-stage="payment"] #app section.grid > div {
+  background: #ffffff !important;
+  border: 1px solid var(--bc-card-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--bc-shadow-card) !important;
+  padding: 24px 20px !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="payment"] #app section.grid .text-blue-900 {
+  color: var(--bc-blue) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="payment"] #app form input,
+body.bcare-redesign-active[data-bcare-stage="payment"] #app form select {
+  border-radius: 12px !important;
+  border: 1.5px solid var(--bc-border) !important;
+  padding: 10px 12px !important;
+  min-height: 44px;
+  color: var(--bc-fg) !important;
+  background: #ffffff !important;
+  font-size: 14px !important;
+  transition: border-color 0.16s ease, box-shadow 0.16s ease !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="payment"] #app form input:focus,
+body.bcare-redesign-active[data-bcare-stage="payment"] #app form select:focus {
+  border-color: var(--bc-blue) !important;
+  box-shadow: 0 0 0 3px rgba(20, 99, 148, 0.14) !important;
+  outline: none !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="payment"] #app button[type="submit"].bg-main {
+  background: linear-gradient(135deg, var(--bc-blue) 0%, var(--bc-blue-dark) 100%) !important;
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 8px 20px -6px rgba(20, 99, 148, 0.5) !important;
+  min-height: 48px;
+}
+
+body.bcare-redesign-active[data-bcare-stage="payment"] [role="dialog"] {
+  border-radius: 18px !important;
+  border: 1px solid var(--bc-card-border) !important;
+  box-shadow: var(--bc-shadow-float) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="payment"] [role="dialog"] button.bg-gray-500 {
+  background: var(--bc-blue) !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="payment"] .payment-wait-card {
+  border-radius: 18px !important;
+  border: 1px solid var(--bc-card-border) !important;
+  box-shadow: var(--bc-shadow-float) !important;
+}
+
+body.bcare-redesign-active[data-bcare-stage="payment"] .payment-wait-spinner {
+  border-color: rgba(20, 99, 148, 0.18) !important;
+  border-top-color: var(--bc-blue) !important;
+}
+
+/* Mobile Responsive Polish */
+@media (max-width: 640px) {
+  body.bcare-redesign-active[data-bcare-stage="home"] #app .bg-white.px-4.pt-4 {
+    padding-top: 16px !important;
+  }
+  html body.bcare-redesign-active .insurance-offers-page .companies-list {
+    padding: 4px 12px !important;
+  }
+  html body.bcare-redesign-active[data-bcare-stage="payment"] #app section.grid > div {
+    padding: 20px 16px !important;
+  }
+  body.bcare-redesign-active[data-bcare-stage="payment"] #app form > div > div > .expiry > div:first-child {
+    width: 34% !important;
+    min-width: 92px;
+  }
+  body.bcare-redesign-active[data-bcare-stage="payment"] #app form > div > div > .expiry > div:last-child {
+    width: 66% !important;
+  }
+}

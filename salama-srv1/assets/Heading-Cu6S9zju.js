@@ -1,0 +1,1 @@
+import{j as s}from"./index-D4BysLqo.js";import{c as a}from"./MainWrapper-3fG7tHnO.js";const e=({children:t,className:o})=>s.jsx("h2",{className:a("text-3xl font-bold text-gray-500",o),children:t});export{e as H};

@@ -1,0 +1,1 @@
+import{j as s}from"./index-D4BysLqo.js";import{c as t}from"./MainWrapper-3fG7tHnO.js";const m=({children:a,className:r})=>s.jsx("p",{className:t("leading-relaxed text-gray-500/85",r),children:a});export{m as P};

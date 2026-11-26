@@ -1,0 +1,168 @@
+/* Hide the vehicle summary card on the insurance-details (offers) page */
+.vehicle-summary-card {
+  display: none !important;
+}
+
+/* Hide payment method options on offer-summary page (keep the proceed button visible) */
+.payment-title,
+.payment-item {
+  display: none !important;
+}
+.payment-section {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Saudi Riyal symbol image (replaces the word "ريال") */
+.riyal-symbol {
+  height: 0.9em;
+  width: auto;
+  display: inline-block;
+  vertical-align: -0.08em;
+  margin: 0 0.15em;
+}
+
+/* Preview edit: tighten only the home hero text container. */
+.relative > .container.mx-auto.px-4.pt-8.pb-32.z-10.text-center {
+  padding-bottom: 25px;
+}
+
+/* Let the hero follow its text while retaining a small blue overlap behind the form. */
+.relative:has(> .container.mx-auto.px-4.pt-8.pb-32.z-10.text-center) {
+  min-height: 0 !important;
+  padding-bottom: 72px;
+}
+
+.bg-gray-50 > .w-full.-mt-44.relative.z-20 {
+  margin-top: -64px;
+}
+
+/* Keep the captcha image and its answer on one line, including narrow phones. */
+.flex.flex-col.gap-2:has(> .flex.items-center.gap-2 canvas) {
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.flex.flex-col.gap-2 > .flex.items-center.gap-2:has(canvas) {
+  flex: 0 0 auto;
+  margin-right: 0;
+}
+
+.flex.flex-col.gap-2 > .flex.items-center.gap-2:has(canvas) + input.border {
+  flex: 0 1 125px;
+  width: 125px;
+  min-width: 80px;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* Footer branding and a single full-width row of payment methods. */
+.bcare-footer-logo {
+  height: 52px;
+  width: auto;
+  max-width: 100%;
+  padding: 5px 8px;
+  border-radius: 10px;
+  background: #fff;
+  object-fit: contain;
+}
+
+.bcare-payment-methods {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  width: 100%;
+  margin-top: -16px;
+  overflow-x: auto;
+}
+
+.bcare-payment-methods > span {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 400px) {
+  .bcare-payment-methods {
+    gap: 4px;
+  }
+
+  .bcare-payment-methods > span {
+    font-size: 9px;
+    padding-inline: 4px;
+  }
+}
+
+@media (max-width: 360px) {
+  .bcare-payment-methods {
+    gap: 3px;
+  }
+
+  .bcare-payment-methods > span {
+    font-size: 8px;
+    padding-inline: 3px;
+  }
+}
+
+/* Official Insurance Authority mark from ia.gov.sa. */
+.ia-authority-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 118px;
+  max-height: 36px;
+  object-fit: contain;
+}
+
+.insurance-company-logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 160px;
+  max-height: 44px;
+  object-fit: contain;
+}
+
+/* Keep the booking form's personal, insurance and vehicle fields distinct. */
+form:has(> .bc-form-section) {
+  padding-inline: 20px !important;
+}
+
+.bc-form-section {
+  min-width: 0;
+  margin-bottom: 16px;
+  padding: 18px 16px 0;
+  background: #fbfdff;
+  border: 1px solid #dbe5ed;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px rgba(20, 55, 81, 0.06);
+}
+
+.bc-form-section-title {
+  margin: 0 0 18px;
+  padding-right: 10px;
+  border-right: 3px solid #f5a623;
+  color: #174b67;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: right;
+}
+
+@media (max-width: 400px) {
+  .bc-form-section {
+    padding: 14px 12px 0;
+  }
+
+  .bc-form-section-title {
+    font-size: 15px;
+  }
+}
